@@ -2,13 +2,13 @@ const { defineConfig } = require("cypress");
 
 module.exports = defineConfig({
   env:{
-    user:"admin@phptravels.com",
-    password:"demoadmin"
+    user:"admin@admin.com",
+    password:"admin123"
   },
   e2e: {
     setupNodeEvents(on, config) {
       // implement node event listeners here
     },
-    baseUrl:"https://www.phptravels.net/admin/login.php",
+    baseUrl:"https://qa-automation-practice.netlify.app/login.html",
   },
 });
