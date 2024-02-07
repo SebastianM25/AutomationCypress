@@ -6,6 +6,7 @@
     "cypress:open": "cypress open",
     "loginPage": "cypress run --spec \"cypress/e2e/loginPage.cy.js\"",
     "ApiGet": "cypress run --spec \"cypress/e2e/api.cy.js\"",
-    "ApiPost": "cypress run --spec \"cypress/e2e/ApiPost.cy.js\""
+    "ApiPost": "cypress run --spec \"cypress/e2e/ApiPost.cy.js\"",
+    "loginPagePhpTravels": "cypress run --spec \"cypress/e2e/loginPage.cy.js\""
   }
 }

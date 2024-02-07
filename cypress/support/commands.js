@@ -23,3 +23,11 @@
 //
 // -- This will overwrite an existing command --
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
+Cypress.Commands.add('auth',()=>{
+    cy.session([Cypress.env('email'),Cypress.env('password')],()=>{
+        cy.visit(Cypress.env('auth_url'));
+        cy.get('#email').type(Cypress.env('email'));
+        cy.get('#password').type(Cypress.env('password'));
+        cy.get('#submit').click();
+    })
+})
