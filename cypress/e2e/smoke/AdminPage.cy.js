@@ -12,4 +12,7 @@ describe('Testare URL cu interceptare', () => {
         cy.get('button.oxd-button.oxd-button--medium.oxd-button--secondary.orangehrm-left-space')
             .should('be.visible');
     });
+    it('Check the add button is displayed', () => {
+        cy.get('button.oxd-button').should('be.visible');
+    });
 });
