@@ -1,9 +1,9 @@
 describe('Testare URL cu interceptare', () => {
-beforeEach(()=>{
+before(()=>{
     cy.auth();
 })
 
-    it('Verificare URL', () => {
+    it('Check the URL', () => {
       // We intercept the request to navigate to the desired URL
       cy.intercept('GET', '**/dashboard/index').as('dashboardRequest');
   
