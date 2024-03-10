@@ -3,7 +3,7 @@ describe('Smoke test on Add employee page', () => {
     before(() => {
         cy.auth();
         cy.get('a[href="/web/index.php/pim/viewPimModule"]').click();
-        //href="/web/index.php/pim/viewPimModule"
+       
     })
 
     it('Check the url', () => {
