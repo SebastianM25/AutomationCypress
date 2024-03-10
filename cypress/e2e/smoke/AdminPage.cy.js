@@ -6,7 +6,7 @@ describe('Smoke test on Admin page', () => {
     })
 
     it('Check the url', () => {
-        //cy.url().should('include', '/admin/viewSystemUsers');
+       
         cy.url().should('include', Cypress.env('adminPageUrl'));
     });
 
