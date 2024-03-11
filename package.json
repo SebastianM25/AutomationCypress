@@ -9,9 +9,12 @@
     "ApiPost": "cypress run --spec \"cypress/e2e/api/ApiPost.cy.js\"",
     "loginPageOrangeHRM": "cypress run --spec \"cypress/e2e/loginPage/loginPageOrangeHRM.cy.js\"",
     "addUser": "cypress run --spec \"cypress/e2e/addUser/addUser.cy.js\"",
-    "smokeTestOnDashboardPage":"cypress run --spec \"cypress/e2e/smoke/DashboardPage.cy.js\""
+    "smokeTestOnDashboardPage": "cypress run --spec \"cypress/e2e/smoke/DashboardPage.cy.js\"",
+    "connect-mysql": "node connectionMySql.js"
   },
   "dependencies": {
-    "k6": "^0.0.0"
+    "dotenv": "^16.4.5",
+    "k6": "^0.0.0",
+    "mysql2": "^3.9.2"
   }
 }
