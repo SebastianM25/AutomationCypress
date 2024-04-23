@@ -4,7 +4,7 @@
   },
   "scripts": {
     "cypress:open": "cypress open",
-    "loginPage": "cypress run --spec \"cypress/e2e/loginPage.cy.js\"",
+    "loginPage": "cypress run --spec \"cypress/e2e/loginPage/loginPage.cy.js\"",
     "ApiGet": "cypress run --spec \"cypress/e2e/api/api.cy.js\"",
     "ApiPost": "cypress run --spec \"cypress/e2e/api/ApiPost.cy.js\"",
     "loginPageOrangeHRM": "cypress run --spec \"cypress/e2e/loginPage/loginPageOrangeHRM.cy.js\"",
