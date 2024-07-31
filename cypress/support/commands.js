@@ -40,9 +40,9 @@
 }) */
 // commands.js
 Cypress.Commands.add('auth', (username, password) => {
-    cy.visit('https://opensource-demo.orangehrmlive.com/web/index.php/auth/login'); // Sau puteți folosi calea către pagina de autentificare
-    cy.get('input[name="username"]').type(Cypress.env('username'));
-    cy.get('input[name="password"]').type(Cypress.env('password'));
-    cy.get('button.orangehrm-login-button').click();
-   //cy.visit('http://google.com')
-});
+    cy.visit('/login'); // Adjust the URL to your login page if necessary
+    cy.get('input[name="username"]').type(username);
+    cy.get('input[name="password"]').type(password);
+    cy.get('button[type="submit"]').click();
+  });
+  
