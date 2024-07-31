@@ -10,7 +10,8 @@
     "loginPageOrangeHRM": "cypress run --spec \"cypress/e2e/loginPage/loginPageOrangeHRM.cy.js\"",
     "addUser": "cypress run --spec \"cypress/e2e/addUser/addUser.cy.js\"",
     "smokeTestOnDashboardPage": "cypress run --spec \"cypress/e2e/smoke/DashboardPage.cy.js\"",
-    "connect-mysql": "node connectionMySql.js"
+    "connect-mysql": "node connectionMySql.js",
+    "addUsers": "cypress run --spec \"cypress/e2e/AddUsers/addUsers.cy.js\""
   },
   "dependencies": {
     "dotenv": "^16.4.5",
