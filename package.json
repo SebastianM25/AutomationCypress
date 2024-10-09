@@ -5,8 +5,8 @@
   "scripts": {
     "cypress:open": "cypress open",
     "loginPage": "cypress run --spec \"cypress/e2e/loginPage/loginPage.cy.js\"",
-    "ApiGet": "cypress run --spec \"cypress/e2e/api/getUser.cy.js\"",
-    "ApiPost": "cypress run --spec \"cypress/e2e/api/ApiPost.cy.js\"",
+    "ApiGet": "cypress run --spec \"cypress/e2e/Api/GoRest/getUser.cy.js\"",
+    "ApiPost": "cypress run --spec \"cypress/e2e/Api/GoRest/createUser.cy.js\"",
     "loginPageOrangeHRM": "cypress run --spec \"cypress/e2e/loginPage/loginPageOrangeHRM.cy.js\"",
     "addUser": "cypress run --spec \"cypress/e2e/addUser/addUser.cy.js\"",
     "smokeTestOnDashboardPage": "cypress run --spec \"cypress/e2e/smoke/DashboardPage.cy.js\"",
