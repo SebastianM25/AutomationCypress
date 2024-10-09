@@ -2,7 +2,7 @@ pipeline{
 
 agent any
 parameters{
-    string(name:'SPEC', defaultValue:'cypress/e2e/SmokeTesting/Doc/**/*.cy.js", description:"We will run all smoke tests on the DOC application')
+    string(name:'SPEC', defaultValue:'cypress/e2e/Api/GoRest/*.cy.js", description:"We will run all smoke tests on the DOC application')
     choise(name:'BROWSER', choises: ['chrome'], description:"Choise the broswer where you want to execute your script")
 
 }
