@@ -11,10 +11,12 @@
     "addUser": "cypress run --spec \"cypress/e2e/addUser/addUser.cy.js\"",
     "smokeTestOnDashboardPage": "cypress run --spec \"cypress/e2e/smoke/DashboardPage.cy.js\"",
     "connect-mysql": "node connectionMySql.js",
-    "addUsers": "cypress run --spec \"cypress/e2e/AddUsers/addUsers.cy.js\""
+    "addUsers": "cypress run --spec \"cypress/e2e/AddUsers/addUsers.cy.js\"",
+    "userRegisterK6": "dotenv -e .env k6 run /Users/sebastianmarius/Desktop/automation/K6/ApiK6/UserResgister/userRegister.js"
+
   },
   "dependencies": {
-    "dotenv": "^16.4.5",
+    "dotenv": "^16.4.7",
     "k6": "^0.0.0",
     "mysql2": "^3.9.2"
   }
