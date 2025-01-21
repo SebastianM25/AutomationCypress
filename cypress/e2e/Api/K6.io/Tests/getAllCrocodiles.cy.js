@@ -4,7 +4,7 @@ describe('Crocodile API Tests', () => {
 
     it('should return status 200 and a valid JSON response', () => {
 
-        K6ClientApiService.getCrocodiles().then((response)=>{
+        K6ClientApiService.getCrocodiles().then((response) => {
             expect(response.status).to.eq(200);
             expect(response.duration).to.be.lessThan(800);
             expect(response.headers['content-type']).to.include('application/json');

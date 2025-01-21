@@ -11,9 +11,11 @@
     "login":"cypress run --spec \"cypress/e2e/UI/LoginPage/loginPage.cy.js\"",
     "smokeTestOnDashboardPage": "cypress run --spec \"cypress/e2e/UI/SmokeTesting/*.cy.js\"",
     "connect-mysql": "node connectionMySql.js",
+    "runAllApiTestsFromK6":"cypress run --spec \"cypress/e2e/Api/K6.io/Tests/*.cy.js\"",
     "userRegisterK6": "dotenv -e .env k6 run /Users/sebastianmarius/Desktop/automation/K6/ApiK6/UserResgister/userRegister.js",
     "getCrocodiles": "dotenv -e .env k6 run /Users/sebastianmarius/Desktop/automation/cypress/e2e/Api/K6.io/Tests/getCrocodiles.cy.js",
-    "getCrocodilesList": "cypress run --spec \"cypress/e2e/Api/K6.io/Tests/getAllCrocodiles.cy.js\""
+    "getCrocodilesList": "cypress run --spec \"cypress/e2e/Api/K6.io/Tests/getAllCrocodiles.cy.js\"",
+    "userRegister":"cypress run --spec \"cypress/e2e/Api/K6.io/Tests/userRegister.cy.js\""
   },
   "dependencies": {
     "dotenv": "^16.4.7",
