@@ -1,33 +1,32 @@
-pipeline{
+pipeline {
 
-agent any
-parameters{
-    string(name:'SPEC', defaultValue:'cypress/e2e/Api/GoRest/**/*.cy.js", description:"We will run all smoke tests on the DOC application')
-    choise(name:'BROWSER', choises: ['chrome'], description:"Choise the broswer where you want to execute your script")
+    agent any
 
-}
-
-options{
-    ansiColor('xterm')
-}
-stages{
-    stage('Building'){
-         steps{
-            echo "Building the application"
-         }
+    parameters {
+        string(name: 'SPEC', defaultValue: 'cypress/e2e/Api/GoRest/**/*.cy.js', description: "We will run all smoke tests ")
+        choice(name: 'BROWSER', choices: ['chrome'], description: "Choose the browser where you want to execute your script")
     }
-    stage('Testing'){
-        steps{
-            bat "npm i"
-            bat "npx cypress runn --browser ${BROWSER} --spec ${SPEC}"
+
+    options {
+        timestamps()  // Înlocuiește ansiColor cu timestamps dacă nu ai pluginul instalat
+    }
+
+    stages {
+        stage('Building') {
+            steps {
+                echo "Building the application"
+            }
+        }
+        stage('Testing') {
+            steps {
+                bat "npm install"
+                bat "npx cypress run --browser ${BROWSER} --spec ${SPEC}"
+            }
+        }
+        stage('Deploying') {
+            steps {
+                echo "Deploy in progress"
+            }
         }
     }
-    stage('Deploying'){
-        steps{
-        echo "Deploy in progress"
-        }
-    }
-     
-   
-}
 }
