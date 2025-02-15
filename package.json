@@ -5,8 +5,8 @@
   "scripts": {
     "cypress:open": "cypress open",
     "loginOrangeHRM": "cypress run --spec \"cypress/e2e/UI/LoginPage/loginPageOrangeHRM.cy.js\"",
-    "ApiGet": "cypress run --spec \"cypress/e2e/Api/GoRest/getUser.cy.js\"",
-    "ApiPost": "cypress run --spec \"cypress/e2e/Api/GoRest/createUser.cy.js\"",
+    "ApiGet": "cypress run --spec \"cypress/e2e/Api/GoRest/Test/getUser.cy.js\"",
+    "ApiPost": "cypress run --spec \"cypress/e2e/Api/GoRest/Test/createUser.cy.js\"",
     "addUsers": "cypress run --spec \"cypress/e2e/UI/AddUsers/addUsers.cy.js\"",
     "login":"cypress run --spec \"cypress/e2e/UI/LoginPage/loginPage.cy.js\"",
     "smokeTestOnDashboardPage": "cypress run --spec \"cypress/e2e/UI/SmokeTesting/*.cy.js\"",
@@ -16,7 +16,8 @@
     "getCrocodiles": "dotenv -e .env k6 run /Users/sebastianmarius/Desktop/automation/cypress/e2e/Api/K6.io/Tests/getCrocodiles.cy.js",
     "getCrocodilesList": "cypress run --spec \"cypress/e2e/Api/K6.io/Tests/getAllCrocodiles.cy.js\"",
     "userRegister":"cypress run --spec \"cypress/e2e/Api/K6.io/Tests/userRegister.cy.js\"",
-    "goRest": "cypress run --spec \"cypress/e2e/Api/GoRest/**/*.cy.js\""
+    "goRest": "cypress run --spec \"cypress/e2e/Api/GoRest/**/*.cy.js\"",
+    "k6":"cypress run --spec \"cypress/e2e/Api/K6.io/Tests/**/*.cy.js\""
 
   },
   "dependencies": {
