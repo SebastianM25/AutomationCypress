@@ -1,41 +1,52 @@
-describe('Verificare timp de răspuns API', () => {
-  it('Display all users from page 2', () => {
-    cy.request('https://reqres.in/api/users?page=2').then((response) => {
-      expect(response.status).to.equal(200);
-      // Verify the structure of the response body
-      expect(response.body).to.have.property('page').that.is.a('number');
-      expect(response.body).to.have.property('per_page').that.is.a('number');
-      expect(response.body).to.have.property('total').that.is.a('number');
-      expect(response.body).to.have.property('total_pages').that.is.a('number');
+describe('API Testing pentru Verificare timp de răspuns', () => {
+  it('Afișează toți utilizatorii de pe pagina 2 și verifică structura răspunsului', () => {
+    const pageNumber = 2;
+    cy.wrap(pageNumber).as('pageNumber');
 
-      // Verify the values of specific properties
-      expect(response.body.page).to.equal(2);
-      expect(response.body.per_page).to.equal(6);
-      expect(response.body.total).to.equal(12);
-      expect(response.body.total_pages).to.equal(2);
+    // 👉 Fără token aici
+    cy.request({
+      method: 'GET',
+      url: `https://reqres.in/api/users?page=${pageNumber}`,
+      headers: {
+        'Content-Type': 'application/json',
+         'x-api-key': 'reqres-free-v1'
+      }
+    }).then((response) => {
+      expect(response.status).to.eq(200);
+
+      expect(response.body).to.have.all.keys('page', 'per_page', 'total', 'total_pages', 'data','support');
+      expect(response.body.page).to.eq(pageNumber);
+      expect(response.body.per_page).to.eq(6);
+      expect(response.body.total).to.eq(12);
+      expect(response.body.total_pages).to.eq(2);
+
+      cy.get('@pageNumber').then((page) => cy.log(`Pagina: ${page}`));
     });
   });
 
-  it('Display just a single user', () => {
-    cy.request('https://reqres.in/api/users/2').then((response) => {
-      // Verify the response status
-      expect(response.status).to.equal(200);
+  it('Afișează un singur utilizator și verifică datele', () => {
+    const userId = 2;
+    cy.wrap(userId).as('userId');
 
-      // Verify the structure of the response body
-      expect(response.body).to.have.property('data').that.is.an('object');
-      expect(response.body.data).to.have.property('id').that.is.a('number');
-      expect(response.body.data).to.have.property('email').that.is.a('string');
-      expect(response.body.data).to.have.property('first_name').that.is.a('string');
-      expect(response.body.data).to.have.property('last_name').that.is.a('string');
-      expect(response.body.data).to.have.property('avatar').that.is.a('string');
+    cy.request({
+      method: 'GET',
+      url: `https://reqres.in/api/users/${userId}`,
+      headers: {
+        'Content-Type': 'application/json',
+         'x-api-key': 'reqres-free-v1'
+      }
+    }).then((response) => {
+      expect(response.status).to.eq(200);
 
-      // Verify the values of specific properties
-      expect(response.body.data.id).to.equal(2);
-      expect(response.body.data.email).to.equal('janet.weaver@reqres.in');
-      expect(response.body.data.first_name).to.equal('Janet');
-      expect(response.body.data.last_name).to.equal('Weaver');
-      expect(response.body.data.avatar).to.equal('https://reqres.in/img/faces/2-image.jpg');
+      const data = response.body.data;
+      expect(data).to.have.all.keys('id', 'email', 'first_name', 'last_name', 'avatar');
+      expect(data.id).to.eq(userId);
+      expect(data.email).to.eq('janet.weaver@reqres.in');
+      expect(data.first_name).to.eq('Janet');
+      expect(data.last_name).to.eq('Weaver');
+      expect(data.avatar).to.eq('https://reqres.in/img/faces/2-image.jpg');
+
+      cy.get('@userId').then((id) => cy.log(`ID tested: ${id}`));
     });
   });
-
 });

@@ -3,10 +3,11 @@ describe('API Testing for User Creation', () => {
     // Here generate random email and id
     const email = Math.random().toString(36).replace(/[^a-z]+/g, '').substr(6, 15);
     const id = Math.floor((Math.random() * 1000) + 1);
-    const bearerToken='0c9c40d945079e2b1f6763d190da596ef3a71d334f79f07902dce75df50ccc99';
+    const bearerToken='22b20f46d9bf87f782edcef4d5676b00c4df839914b990ae1a1ce94db0317572';
 
     // Save email and id as Cypress global variables
     cy.wrap(email).as('generatedEmail');
+    
     cy.wrap(id).as('generatedId');
 
     // Make POST request to create user
@@ -15,7 +16,8 @@ describe('API Testing for User Creation', () => {
       url: 'https://gorest.co.in/public/v2/users',
       headers: {
           'Authorization': `Bearer ${bearerToken}`,
-          'Content-Type': 'application/json',  // Include any other required headers
+          'Content-Type': 'application/json', 
+         
       },
       body: {
         name: 'SebaTest2',
