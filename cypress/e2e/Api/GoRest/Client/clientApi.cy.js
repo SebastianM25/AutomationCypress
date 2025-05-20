@@ -1,7 +1,7 @@
 class ClientApi {
     static goRestUsers(method, body = {}) {
-      const bearerToken = Cypress.env('bearerToken'); // Retrieve token from env
-      const gorestBaseUrl = Cypress.env('gorestBaseUrl'); // Retrieve base URL from env
+      const bearerToken = Cypress.env('bearerToken'); 
+      const gorestBaseUrl = Cypress.env('gorestBaseUrl'); 
   
       return cy.request({
         method: method,
@@ -15,14 +15,14 @@ class ClientApi {
     }
   
     static reqresUsers(method, endpoint, queryParams = '') {
-      const reqresBaseUrl = Cypress.env('reqresBaseUrl'); // Retrieve base URL from env
+      const reqresBaseUrl = Cypress.env('reqresBaseUrl'); 
   
       return cy.request({
         method: method,
-        url: `${reqresBaseUrl}${endpoint}${queryParams}`, // Construct full URL
+        url: `${reqresBaseUrl}${endpoint}${queryParams}`, 
         headers: {
           'Content-Type': 'application/json',
-          'x-api-key': 'reqres-free-v1' // Optional header if required
+          'x-api-key': 'reqres-free-v1' 
         }
       });
     }
