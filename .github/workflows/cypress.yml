@@ -27,13 +27,17 @@ jobs:
       - name: Install dependencies
         run: npm install
 
-      # Step 4: Set up environment variables
+      # Step 4: Install Cypress binary
+      - name: Install Cypress
+        run: npx cypress install
+
+      # Step 5: Set up environment variables
       - name: Set environment variables
         env:
           CYPRESS_bearerToken: ${{ secrets.BEARER_TOKEN }}
           CYPRESS_gorestBaseUrl: ${{ secrets.GOREST_BASE_URL }}
         run: echo "Environment variables set"
 
-      # Step 5: Run Cypress tests
+      # Step 6: Run Cypress tests
       - name: Run GoRest Cypress Tests
         run: npx cypress run --spec "cypress/e2e/Api/GoRest/**/*.cy.js"
