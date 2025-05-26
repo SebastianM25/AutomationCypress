@@ -1,35 +1,43 @@
-
 import http from 'k6/http';
 import { check, sleep } from 'k6';
 
-export const options = {
-  vus: 10, // number of virtual users
-  duration: '30s', // duration of the test
+export let options = {
+  // Ramp from 1 to 50 virtual users over 30s, hold 50 VUs for 1m, then ramp down
+  stages: [
+    { duration: '30s', target: 50 },
+    { duration: '1m',  target: 50 },
+    { duration: '30s', target: 0  },
+  ],
+  thresholds: {
+    // 95% of requests must complete below 500ms
+    http_req_duration: ['p(95)<500'],
+  },
 };
 
 export default function () {
-  // Define the URL
-  const url = 'https://test-api.k6.io/public/crocodiles/1/';
-
-  // Define headers, if needed (e.g., for authentication)
-  const headers = {
-    'Authorization': 'Bearer YOUR_ACCESS_TOKEN', // if authentication is required
+  const url = 'https://gorest.co.in/public/v2/users';
+  const bearerToken = __ENV.BEARER_TOKEN; // Retrieve the token from environment variables
+  const params = {
+    headers: {
+      Accept: 'application/json',
+      Authorization: `Bearer ${bearerToken}`, // Add the bearer token here
+    },
   };
 
-  // Make the GET request
-  const res = http.get(url, { headers: headers });
+  const res = http.get(url, params);
 
-  // Validate the response status code and response time
   check(res, {
     'status is 200': (r) => r.status === 200,
-    'response time < 200ms': (r) => r.timings.duration < 200,
+    'response is JSON array': (r) => {
+      try {
+        return Array.isArray(r.json());
+      } catch (e) {
+        return false;
+      }
+    },
+    'body not empty': (r) => r.body && r.body.length > 0,
   });
 
-  // Optionally log the response
-  console.log('Response status:', res.status);
-  console.log('Response body:', res.body);
-
-  // Simulate user think time
+  // pacing: one iteration per second per VU
   sleep(1);
 }
-
