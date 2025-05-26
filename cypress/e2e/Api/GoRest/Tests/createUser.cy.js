@@ -1,4 +1,4 @@
-import ClientApi from '../Client/ClientApi.cy';
+import ClientApi from '../Client/clientApi.cy';
 describe('API Testing for User Creation', () => {
   it('Create user and verify data', () => {
     const email = Math.random().toString(36).replace(/[^a-z]+/g, '').substr(6, 15);

@@ -1,4 +1,4 @@
-import ClientApi from '../Client/ClientApi.cy';
+import ClientApi from '../Client/clientApi.cy';
 
 describe('API Testing pentru Verificare timp de răspuns', () => {
   it('Afișează toți utilizatorii de pe pagina 2 și verifică structura răspunsului', () => {
