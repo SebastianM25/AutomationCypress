@@ -18,7 +18,7 @@ describe('API Testing pentru Verificare timp de răspuns', () => {
       cy.get('@pageNumber').then((page) => cy.log(`Pagina: ${page}`));
     });
   });
-
+/*Am facut o modificare */ 
   it('Afișează un singur utilizator și verifică datele', () => {
     const userId = 2;
 
