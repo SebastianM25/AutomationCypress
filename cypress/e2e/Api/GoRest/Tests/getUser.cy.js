@@ -1,41 +1,48 @@
 import ClientApi from '../Client/clientApi.cy';
 
-describe('API Testing pentru Verificare timp de răspuns', () => {
-  it('Afișează toți utilizatorii de pe pagina 2 și verifică structura răspunsului', () => {
-    const pageNumber = 2;
+describe('API Testing GoRest – GET users', () => {
+  it('Afișează utilizatorii de pe o pagină și verifică structura răspunsului', () => {
+    const pageNumber = 1;
+    const perPage = 20;
 
-    cy.wrap(pageNumber).as('pageNumber');
-
-    ClientApi.reqresUsers('GET', '/users', `?page=${pageNumber}`).then((response) => {
+    ClientApi.getUsers(`?page=${pageNumber}&per_page=${perPage}`).then((response) => {
       expect(response.status).to.eq(200);
+      expect(response.body).to.be.an('array');
 
-      expect(response.body).to.have.all.keys('page', 'per_page', 'total', 'total_pages', 'data', 'support');
-      expect(response.body.page).to.eq(pageNumber);
-      expect(response.body.per_page).to.eq(6);
-      expect(response.body.total).to.eq(12);
-      expect(response.body.total_pages).to.eq(2);
+      if (response.body.length > 0) {
+        const firstUser = response.body[0];
+        expect(firstUser).to.have.all.keys('id', 'name', 'email', 'gender', 'status');
+        expect(firstUser.id).to.be.a('number');
+        expect(firstUser.name).to.be.a('string');
+        expect(firstUser.email).to.be.a('string');
+        expect(firstUser.gender).to.be.oneOf(['male', 'female']);
+        expect(firstUser.status).to.be.oneOf(['active', 'inactive']);
+      }
 
-      cy.get('@pageNumber').then((page) => cy.log(`Pagina: ${page}`));
+      cy.log(`Pagina: ${pageNumber}, rezultate: ${response.body.length}`);
     });
   });
-/*Am facut o modificare */ 
+
   it('Afișează un singur utilizator și verifică datele', () => {
-    const userId = 2;
+    ClientApi.getUsers('?page=1&per_page=1').then((listResponse) => {
+      expect(listResponse.status).to.eq(200);
+      expect(listResponse.body.length).to.be.at.least(1);
 
-    cy.wrap(userId).as('userId');
+      const userId = listResponse.body[0].id;
 
-    ClientApi.reqresUsers('GET', `/users/${userId}`).then((response) => {
-      expect(response.status).to.eq(200);
+      ClientApi.getUser(userId).then((response) => {
+        expect(response.status).to.eq(200);
 
-      const data = response.body.data;
-      expect(data).to.have.all.keys('id', 'email', 'first_name', 'last_name', 'avatar');
-      expect(data.id).to.eq(userId);
-      expect(data.email).to.eq('janet.weaver@reqres.in');
-      expect(data.first_name).to.eq('Janet');
-      expect(data.last_name).to.eq('Weaver');
-      expect(data.avatar).to.eq('https://reqres.in/img/faces/2-image.jpg');
+        const user = response.body;
+        expect(user).to.have.all.keys('id', 'name', 'email', 'gender', 'status');
+        expect(user.id).to.eq(userId);
+        expect(user.name).to.be.a('string');
+        expect(user.email).to.be.a('string');
+        expect(user.gender).to.be.oneOf(['male', 'female']);
+        expect(user.status).to.be.oneOf(['active', 'inactive']);
 
-      cy.get('@userId').then((id) => cy.log(`ID tested: ${id}`));
+        cy.log(`Utilizator verificat: id=${user.id}, name=${user.name}`);
+      });
     });
   });
 });
