@@ -7,7 +7,7 @@ const getHeaders = () => ({
   Authorization: `Bearer ${Cypress.env('bearerToken')}`,
   'Content-Type': 'application/json',
 });
-
+//Commit Test
 class ClientApi {
   static get baseUrl() {
     return Cypress.env('gorestBaseUrl');
